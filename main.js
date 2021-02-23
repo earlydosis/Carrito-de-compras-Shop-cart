@@ -79,13 +79,13 @@ Vue.component('product', {
                     {
                         variantId: 2234,
                         variantColor: 'green',
-                        variantImage: '/Users/angielamoreno/Documents/proyectos/Carrito de compras: Shop cart/vmSocks-green.png',
+                        variantImage: 'vmSocks-green.png',
                         variantQuantity: 10
                     },
                     {
                         variantId: 2235,
                         variantColor: 'blue',
-                        variantImage: '/Users/angielamoreno/Documents/proyectos/Carrito de compras: Shop cart/vmSocks-blue.png',
+                        variantImage: 'vmSocks-blue.png',
                         variantQuantity: 0
                     }
                 ]
@@ -100,20 +100,23 @@ Vue.component('product', {
             this.selectedVariant = index
             console.log(index)
         },
-
-        removeFromcart() {
+        //la funcion metodo removeFromCart estaba mal escrita en camelCase donde cart se encontraba en minuscula
+        // removeFromCart != removeFromcart -- es diferente
+        removeFromCart() {
             this.$emit('remove-from-cart', this.variants[this.selectedVariant].variantId)
         }
 
     }, 
 
     computed: {
-
         tittle() {
             return this.brand + ' ' + this.product
         },
         image() {
-            return this.variants[this.selectedVariant]. variantImage
+            /**
+             * la llave del objeto a retornar estaba mal escrita < . varianteImage >
+             */
+            return this.variants[this.selectedVariant].variantImage
         },
         inStock() {
             return this.variants[this.selectedVariant].variantQuantity 
